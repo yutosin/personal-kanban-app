@@ -1,0 +1,70 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.container-fluid.full-height {
+    min-height: 80%;
+    height: 80%;
+    overflow: hidden;
+}
+
+[class*="col-"]{
+    /*margin-bottom: -99999px;*/
+    /*padding-bottom: 99999px;*/
+    /*margin-bottom: -100%;*/
+    /*padding-bottom: 100%;*/
+}
+
+.col-divide {
+    border-right: solid #eee 1px;
+}
+
+#option-icon {
+    padding: 1% 0 0 1%;
+}
+
+#pomodoro-icon {
+    padding: 1% 1% 0 0;
+}
+
+#add-icon {
+    position: absolute;
+    right: 1%;
+    bottom: 1%;
+    /*padding-right: 1%;*/
+    z-index: 100;
+}
+
+.overflow-row {
+    overflow: scroll;
+    min-height: 90%;
+    height: 90%;
+}
+
+.col-md-3 {
+    z-index: 1;
+}
+
+.full {
+    height: 100%;
+    min-height: 100%;
+}
+
+.draggable {
+    cursor: move;
+}
+
+.task-overlay {
+    position: absolute;
+    min-height: 33.7%;
+    min-width: 83.4%;
+    z-index: 100;
+}
+
+.task {
+    position: relative;
+    z-index: 1;
+}
+
+
