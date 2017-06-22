@@ -40,12 +40,30 @@
                     <div class="modal-body">
                         <form id="task-form">
                             <div class="form-group">
-                                <label for="name">Task Name:</label>
+                                <label for="name">Task Name</label>
                                 <input id="name" placeholder="Enter Task Name..." class="form-control" type="text">
                             </div>
                             <div class="form-group">
                                 <label for="details">Task Details</label>
                                 <input id="details" placeholder="Enter Task Details..." class="form-control" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Task Category</label>
+                                <input id="category" placeholder="Enter Task Category..." class="form-control" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="due-date">Task Due Date</label>
+                                <input id="due-date" class="form-control" type="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="recurring">Recurring Task?</label>
+                                <input name="recurring-radio" id="recurring" type="radio" value="yes">Yes
+                                <input name="recurring-radio" type="radio" value="no" checked>No
+                            </div>
+                            <div class="form-group">
+                                <label for="subtask">Task With Subtasks?</label>
+                                <input name="subtask-radio" id="subtask" type="radio" value="yes">Yes
+                                <input name="subtask-radio" type="radio" value="no" checked>No
                             </div>
                         </form>
                     </div>
@@ -102,5 +120,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/date-input-polyfill.dist.js"></script>
 </body>
 </html>

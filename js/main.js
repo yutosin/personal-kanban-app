@@ -366,3 +366,9 @@ addTaskBtn.addEventListener("click", showModal);
 
 var addTaskModal = document.getElementById("add-task");
 addTaskModal.addEventListener("click", addTask);
+
+var dueDateField = document.getElementById("due-date");
+dueDateField.addEventListener('click', function (ev) {
+    var polyFill = document.getElementsByTagName('date-input-polyfill');
+    polyFill.style.zIndex = "2000";
+})
