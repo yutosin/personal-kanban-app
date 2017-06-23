@@ -203,12 +203,28 @@ function handleDrop(evt) {
 
     draggedTask.getCurrentColumn().removeTask(draggedTask);
 
-    dropColumn.appendTask(draggedTask);
-    dropColumn.getNode().appendChild(draggedTask.getNode());
+    var check = recurringCheck(draggedTask, dropColumn);
+
+    if (check) {
+        taskColumns[0].appendTask(draggedTask);
+        taskColumns[0].getNode().appendChild(draggedTask.getNode());
+    } else {
+        dropColumn.appendTask(draggedTask);
+        dropColumn.getNode().appendChild(draggedTask.getNode());
+    }
 
     var taskSVG = draggedTask.getNode().firstElementChild.nextElementSibling;
     taskSVG.setAttributeNS(null, "opacity", "1");
 
+    return false;
+}
+
+function recurringCheck(task, col) {
+    if(task.getRecurring()) {
+        if (col.getColID() === 6 || col.getColID() === 7) {
+            return true;
+        }
+    }
     return false;
 }
 
@@ -265,6 +281,9 @@ function createWrap(textToWrap, svgTextNode, svgEl, isCenter) {
 function addTask () {
     var taskName = document.getElementById("name").value;
     var taskDetails = document.getElementById("details").value;
+    var taskCategory = document.getElementById("category").value;
+    var taskDueDate = document.getElementById("due-date").value;
+    var isRecurring = document.getElementById("recurring").checked;
     var taskColumn1 = document.getElementsByClassName("tasks")[0];
     var taskColumn2 = document.getElementsByClassName("tasks")[1];
     var taskImgCount1 = taskColumn1.getElementsByTagName("svg").length;
@@ -302,7 +321,7 @@ function addTask () {
 
         createWrap(taskDetails, taskDetailsNode, svgEl, false);
 
-        var task = new MainTask(taskName, taskDetails, null, null, null, null, null, taskColumns[0], null, taskContainer);
+        var task = new MainTask(taskName, taskDetails, null, taskDueDate, taskCategory, null, isRecurring, taskColumns[0], null, taskContainer);
         taskContainer.id = task.getTaskID();
         taskColumns[0].appendTask(task);
         taskContainer.id = task.getTaskID();
@@ -354,7 +373,7 @@ function addTask () {
 
         taskColumnNodes[i].id = "column-" + i;
 
-        var col = new Column(new Array(), taskColumnNodes[i], i);
+        var col = new Column([], taskColumnNodes[i], i);
         taskColumns.push(col);
     }
 })();
@@ -369,6 +388,7 @@ addTaskModal.addEventListener("click", addTask);
 
 var dueDateField = document.getElementById("due-date");
 dueDateField.addEventListener('click', function (ev) {
-    var polyFill = document.getElementsByTagName('date-input-polyfill');
-    polyFill.style.zIndex = "2000";
-})
+    var polyFill = document.getElementsByTagName('date-input-polyfill')[0];
+    if(polyFill !== undefined)
+        polyFill.style.zIndex = "2000";
+});
